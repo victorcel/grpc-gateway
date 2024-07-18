@@ -3,15 +3,15 @@ package main
 import (
 	"context"
 	"fmt"
+	personpb "github.com/victorcel/grpc-gateway-proto/pkg/v1/person"
+
+	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 	"log"
-
-	personpb "fire-storage/pkg/v1/person"
-	"google.golang.org/grpc"
 )
 
 func main() {
-	conn, err := grpc.NewClient("localhost:8080", grpc.WithTransportCredentials(insecure.NewCredentials()))
+	conn, err := grpc.NewClient("localhost:9090", grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		log.Fatalf("failed to dial: %v", err)
 	}

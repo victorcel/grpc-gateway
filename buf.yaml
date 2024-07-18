@@ -1,4 +1,0 @@
-version: v1
-name: buf.build/vbarrera/personal-projects
-deps:
-  - buf.build/googleapis/googleapis

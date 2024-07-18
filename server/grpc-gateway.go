@@ -2,8 +2,8 @@ package main
 
 import (
 	"context"
-	personpb "fire-storage/pkg/v1/person"
 	"fmt"
+	personpb "github.com/victorcel/grpc-gateway-proto/pkg/v1/person"
 	"log"
 	"net"
 	"net/http"
@@ -27,7 +27,7 @@ func (s *server) GetPerson(_ context.Context, req *personpb.PersonRequest) (*per
 
 func main() {
 	// Create a listener on TCP port
-	lis, err := net.Listen("tcp", ":8080")
+	lis, err := net.Listen("tcp", ":9090")
 	if err != nil {
 		log.Fatalln("Failed to listen:", err)
 	}
@@ -37,7 +37,7 @@ func main() {
 	// Attach the Greeter service to the server
 	personpb.RegisterPersonServiceServer(s, &server{})
 	// Serve gRPC server
-	log.Println("Serving gRPC on 0.0.0.0:8080")
+	log.Println("Serving gRPC on 0.0.0.0:9090")
 	go func() {
 		log.Fatalln(s.Serve(lis))
 	}()
@@ -45,7 +45,7 @@ func main() {
 	// Create a client connection to the gRPC server we just started
 	// This is where the gRPC-Gateway proxies the requests
 	conn, err := grpc.NewClient(
-		"0.0.0.0:8080",
+		"0.0.0.0:8081",
 		grpc.WithTransportCredentials(insecure.NewCredentials()),
 	)
 	if err != nil {
@@ -60,10 +60,10 @@ func main() {
 	}
 
 	gwServer := &http.Server{
-		Addr:    ":8090",
+		Addr:    ":8091",
 		Handler: gwmux,
 	}
 
-	log.Println("Serving gRPC-Gateway on http://0.0.0.0:8090")
+	log.Println("Serving gRPC-Gateway on http://0.0.0.0:8081")
 	log.Fatalln(gwServer.ListenAndServe())
 }

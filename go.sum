@@ -1,7 +1,11 @@
-github.com/google/go-cmp v0.6.0 h1:ofyhxvXcZhMsU5ulbFiLKl/XBFqE1GSq7atu8tAmTRI=
-github.com/google/go-cmp v0.6.0/go.mod h1:17dUlkBOakJ0+DkrSSNjCkIjxS6bF9zb3elmeNGIjoY=
 github.com/grpc-ecosystem/grpc-gateway/v2 v2.20.0 h1:bkypFPDjIYGfCYD5mRBvpqxfYX1YCS1PXdKYWi8FsN0=
 github.com/grpc-ecosystem/grpc-gateway/v2 v2.20.0/go.mod h1:P+Lt/0by1T8bfcF3z737NnSbmxQAppXMRziHUxPOC8k=
+github.com/victorcel/grpc-gateway-proto v1.0.2 h1:QmSIdCC+Jz3wueU/W5X9cSCUk6rO4bD4FbWwKN6ktmE=
+github.com/victorcel/grpc-gateway-proto v1.0.2/go.mod h1:IxgSFfgernekdCl+RfuX4Zo1ZyJC5rYHyed+NoAe+PU=
+github.com/victorcel/grpc-gateway-proto v1.0.3 h1:8FRGOxjVDB1VPTBo9vwUZ1JORIPucex1IfTXBDHd+fU=
+github.com/victorcel/grpc-gateway-proto v1.0.3/go.mod h1:IxgSFfgernekdCl+RfuX4Zo1ZyJC5rYHyed+NoAe+PU=
+github.com/victorcel/grpc-gateway-proto v1.0.4 h1:P5uU/AJJiueo6WoNinWrmqpBWgZ2Gie8+KObHpBgxc8=
+github.com/victorcel/grpc-gateway-proto v1.0.4/go.mod h1:nT0j+3WmX1XO7sZbcNMqiZniZ41CoJH4hCTdEMKvCEA=
 golang.org/x/net v0.26.0 h1:soB7SVo0PWrY4vPW/+ay0jKDNScG2X9wFeYlXIvJsOQ=
 golang.org/x/net v0.26.0/go.mod h1:5YKkiSynbBIh3p6iOc/vibscux0x38BZDkn8sCUPxHE=
 golang.org/x/sys v0.21.0 h1:rF+pYz3DAGSQAxAu1CbC7catZg4ebC4UIeIhKxBZvws=

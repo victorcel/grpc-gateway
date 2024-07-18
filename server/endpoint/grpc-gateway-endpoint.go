@@ -2,8 +2,8 @@ package main
 
 import (
 	"context"
-	personpb "fire-storage/pkg/v1/person"
 	"flag"
+	personpb "github.com/victorcel/grpc-gateway-proto/pkg/v1/person"
 	"google.golang.org/grpc/grpclog"
 	"net/http"
 
