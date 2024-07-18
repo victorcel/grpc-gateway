@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package proto.person.v1;
+option go_package = "github.com/victorcel/proto-enertbit-grpc-models/pkg/v1;personpb";
+
+import "google/api/annotations.proto";
+
+message PersonRequest {
+  string name = 1;
+  string email = 2;
+  int32 age = 3;
+}
+
+message PersonResponse {
+  string status = 1;
+}
+
+service PersonService {
+  rpc GetPerson(PersonRequest) returns (PersonResponse) {
+    option (google.api.http) = {
+      post: "/v1/person"
+      body: "*"
+    };
+  };
+}

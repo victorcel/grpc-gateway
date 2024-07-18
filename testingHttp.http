@@ -1,0 +1,10 @@
+POST localhost:8090/v1/person
+accept: application/json
+content-type: application/json
+
+{
+  "name": "Juan Perez",
+  "email": "juan.perez@example.com",
+  "age": 31
+}
+####
