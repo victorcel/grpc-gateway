@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	personpb "fire-storage/proto"
+	personpb "fire-storage/pkg/v1/person"
 	"fmt"
 	"google.golang.org/grpc"
 	"log"
@@ -13,15 +13,17 @@ type server struct {
 	personpb.UnimplementedPersonServiceServer
 }
 
-func (s *server) GetPerson(_ context.Context, req *personpb.Person) (*personpb.Empty, error) {
+func (s *server) GetPerson(_ context.Context, req *personpb.PersonRequest) (*personpb.PersonResponse, error) {
 	log.Printf("Received registration for: %s, %s, %d", req.Name, req.Email, req.Age)
 	// Simular el almacenamiento de datos
 	fmt.Println("Datos personales almacenados correctamente.")
-	return &personpb.Empty{}, nil
+	return &personpb.PersonResponse{
+		Status: ".:OK:.",
+	}, nil
 }
 
 func main() {
-	lis, err := net.Listen("tcp", ":50051")
+	lis, err := net.Listen("tcp", ":9090")
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
