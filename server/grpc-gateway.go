@@ -2,8 +2,10 @@ package main
 
 import (
 	"context"
-	"fmt"
 	personpb "github.com/victorcel/grpc-gateway-proto/pkg/v1/person"
+	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/reflection"
+	"google.golang.org/grpc/status"
 	"log"
 	"net"
 	"net/http"
@@ -18,11 +20,17 @@ type server struct {
 }
 
 func (s *server) GetPerson(_ context.Context, req *personpb.PersonRequest) (*personpb.PersonResponse, error) {
-	log.Printf("Received registration for: %s, %s, %d", req.Name, req.Email, req.Age)
-	fmt.Println("Datos personales almacenados correctamente.")
+	//log.Printf("Received registration for: %s, %s, %d", req.Name, req.Email, req.Age)
+	//fmt.Println("Datos personales almacenados correctamente.")
+
+	if req.Age > 100 {
+		return nil, status.Errorf(codes.Unavailable, "Edad no permitida.")
+	}
+
 	return &personpb.PersonResponse{
 		Status: "Registro exitoso.",
 	}, nil
+
 }
 
 func main() {
@@ -34,6 +42,9 @@ func main() {
 
 	// Create a gRPC server object
 	s := grpc.NewServer()
+
+	reflection.Register(s)
+
 	// Attach the Greeter service to the server
 	personpb.RegisterPersonServiceServer(s, &server{})
 	// Serve gRPC server
@@ -53,6 +64,7 @@ func main() {
 	}
 
 	gwmux := runtime.NewServeMux()
+
 	// Register Greeter
 	err = personpb.RegisterPersonServiceHandler(context.Background(), gwmux, conn)
 	if err != nil {
